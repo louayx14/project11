@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        /*stage('Install Dependencies') {
+        stage('Install Dependencies') {
             steps {
                 // Install npm dependencies
                 sh 'npm install'
@@ -29,11 +29,19 @@ pipeline {
             }
         }
 
-    */    stage('Run Solidity Code Metrics') {
+        stage('Run Solidity Code Metrics') {
             steps {
                         // Run solidity-code-metrics on all Solidity files in the contracts directory
                         sh "solidity-code-metrics contracts/*.sol --html > ../metrics.html"
                     }
+        }
+        stage('Run Slither Analysis') {
+            steps {
+                // Install Slither (if needed) and run it on the Solidity contracts
+                sh """
+                slither contracts/*.sol --json slither-report.json > slither-report.txt
+                """
+            }
         }
     }
 
