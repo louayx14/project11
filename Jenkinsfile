@@ -38,6 +38,7 @@ pipeline {
         stage('Run Slither Analysis') {
             steps {
                 // Install Slither (if needed) and run it on the Solidity contracts
+                sh "solc-select use 0.8.16"
                 sh """
                 slither contracts/*.sol --json slither-report.json > slither-report.txt
                 """
