@@ -41,7 +41,7 @@ pipeline {
                 // Run shell commands to install Surya and generate the graph
                 sh '''
                 # Install Surya globally
-                npm install -g surya
+                
                 
                 # Generate the contract graph and save it as a PNG file
                 surya graph contracts/*.sol | dot -Tpng > MyContract.png
