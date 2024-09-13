@@ -35,7 +35,7 @@ pipeline {
                         sh "solidity-code-metrics contracts/*.sol --html > ../metrics.html"
                     }
         }*/
-        stages {
+        
         stage('Install Surya and Generate Graph') {
             steps {
                 // Run shell commands to install Surya and generate the graph
