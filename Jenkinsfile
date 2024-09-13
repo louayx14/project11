@@ -35,6 +35,19 @@ pipeline {
                         sh "solidity-code-metrics contracts/*.sol --html > ../metrics.html"
                     }
         }*/
+        stages {
+        stage('Install Surya and Generate Graph') {
+            steps {
+                // Run shell commands to install Surya and generate the graph
+                sh '''
+                # Install Surya globally
+                npm install -g surya
+                
+                # Generate the contract graph and save it as a PNG file
+                surya graph contracts/*.sol | dot -Tpng > MyContract.png
+                '''
+            }
+        }
         stage('Run Slither Analysis') {
     steps {
         // Install and select Solidity version 0.8.16 using solc-select
