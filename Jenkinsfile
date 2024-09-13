@@ -39,6 +39,7 @@ pipeline {
     steps {
         // Install and select Solidity version 0.8.16 using solc-select
         sh '''
+        pip3 install solc-select
         solc-select install 0.8.16 || true  # Install if not already installed
         solc-select use 0.8.16
         '''
