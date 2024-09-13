@@ -39,13 +39,16 @@ pipeline {
     steps {
         // Install and select Solidity version 0.8.16 using solc-select
         sh '''
-       
+        pip3 install --user cbor2 crytic-compile mythril
+        export PATH=$PATH:/var/lib/jenkins/.local/bin
+        pip3 install solc-select
+        solc-select install 0.8.16 || true  # Install if not already installed
         solc-select use 0.8.16
         '''
 
         // Run Slither on the Solidity contracts and output the results to JSON and text files
         sh '''
-        slither contracts/*.sol
+        slither contracts/*.sol 
         '''
     }
 }
