@@ -48,7 +48,7 @@ pipeline {
 
         // Run Slither on the Solidity contracts and output the results to JSON and text files
         sh '''
-        slither contracts/*.sol --json slither-report.json > slither-report.txt
+        slither contracts/*.sol
         '''
     }
 }
