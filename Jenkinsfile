@@ -71,6 +71,15 @@ pipeline {
                 sh 'slither contracts/*.sol'
             }
         }
+        stage('Run Echidna Analysis') {
+            steps {
+                // Run Echidna on the Solidity contracts
+                sh '''
+                echidna contracts/Lock.sol --test-mode assertion
+                '''
+            }
+        }
+    
     }
 
     post {
