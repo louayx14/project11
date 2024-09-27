@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Install Surya and Generate Graph') {
+       /* stage('Install Surya and Generate Graph') {
             steps {
                 // Run commands to install Surya globally and generate the contract graph as a PNG file
                 sh '''
@@ -45,7 +45,7 @@ pipeline {
                 '''
             }
         }
-
+*/
         stage('Run Slither Analysis') {
             steps {
                 // Install necessary tools and set Solidity version using solc-select
