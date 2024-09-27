@@ -26,10 +26,9 @@ pipeline {
                 // Analyze contracts using Mythril
                 sh '''
                 # Mythril analysis on Solidity contracts
-                myth analyze contracts/*.sol  > mythril-report.txt
+                myth analyze contracts/*.sol
                 '''
-                // Archive the report so it can be viewed later
-                archiveArtifacts artifacts: 'mythril-report.txt', allowEmptyArchive: true
+            
             }
         }
 
