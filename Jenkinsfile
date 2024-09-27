@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-     /*   stage('Run Unit Tests') {
+        stage('Run Unit Tests') {
             steps {
                 // Run Hardhat tests
                 sh 'npx hardhat test'
@@ -34,7 +34,7 @@ pipeline {
                         // Run solidity-code-metrics on all Solidity files in the contracts directory
                         sh "solidity-code-metrics contracts/*.sol --html > ../metrics.html"
                     }
-        }*/
+        
         
         stage('Install Surya and Generate Graph') {
             steps {
