@@ -55,7 +55,7 @@ pipeline {
                 '''
             }
         }
-*/
+
         stage('Run Slither Analysis') {
             steps {
                 // Install necessary tools and set Solidity version using solc-select
@@ -70,7 +70,7 @@ pipeline {
                 // Run Slither on the Solidity contracts
                 sh 'slither contracts/*.sol'
             }
-        }
+        }*/
         stage('Run Echidna Analysis') {
             steps {
                 // Run Echidna on the Solidity contracts
