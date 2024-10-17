@@ -39,18 +39,6 @@ pipeline {
             }
         }
 
-       stage('Install Surya and Generate Graph') {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                // Run commands to install Surya globally and generate the contract graph as a PNG file
-                sh '''
-                npm install -g surya
-                surya graph contracts/*.sol | dot -Tpng > MyContract.png
-                '''
-                }
-            }
-        }
-
         stage('Run Slither Analysis') {
             steps {
                 // Install necessary tools and set Solidity version using solc-select
