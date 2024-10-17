@@ -33,7 +33,8 @@ pipeline {
         }
 
         stage('Run Solidity Code Metrics') {
-            steps { catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+            steps { 
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 // Run solidity-code-metrics on all Solidity files in the contracts directory and generate HTML output
                 sh 'solidity-code-metrics contracts/*.sol --html > metrics.html'
             }
@@ -41,7 +42,8 @@ pipeline {
         }
 
         stage('Run Slither Analysis') {
-            steps { catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+            steps { 
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 // Install necessary tools and set Solidity version using solc-select
                 sh '''
                 pip3 install --user cbor2 crytic-compile mythril
@@ -50,10 +52,11 @@ pipeline {
                 solc-select install 0.8.16 || true  # Install if not already installed
                 solc-select use 0.8.16
                 '''
-
+                }
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 // Run Slither on the Solidity contracts
                 sh 'slither contracts/*.sol'
-            }
+                }
             }
         }
         stage('Run Echidna Analysis') {
