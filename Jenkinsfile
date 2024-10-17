@@ -71,7 +71,7 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 // Run Echidna on the Solidity contracts
                 sh '''
-                echidna contracts/Lock.sol --test-mode assertion
+                echidna contracts/*.sol --test-mode assertion
                 '''
                 }
             }
