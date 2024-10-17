@@ -59,7 +59,8 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 // Run Echidna on the Solidity contracts
                 sh '''
-                echidna --test-mode assertion . > echidna_results.txt
+                sh 'slither contracts/*.sol'
+                
 
                 '''
                 }
