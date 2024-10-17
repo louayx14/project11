@@ -21,18 +21,9 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Run Mythril Analysis') {
-            steps {
-                // Analyze contracts using Mythril
-                sh '''
-                # Mythril analysis on Solidity contracts
-                myth analyze contracts/*.sol
-                '''
-            
-            }
-        }
+    
 
-        /*stage('Run Unit Tests') {
+        stage('Run Unit Tests') {
             steps {
                 // Run Hardhat tests
                 sh 'npx hardhat test'
@@ -46,7 +37,7 @@ pipeline {
             }
         }
 
-       /* stage('Install Surya and Generate Graph') {
+       stage('Install Surya and Generate Graph') {
             steps {
                 // Run commands to install Surya globally and generate the contract graph as a PNG file
                 sh '''
@@ -70,7 +61,7 @@ pipeline {
                 // Run Slither on the Solidity contracts
                 sh 'slither contracts/*.sol'
             }
-        }*/
+        }
         stage('Run Echidna Analysis') {
             steps {
                 // Run Echidna on the Solidity contracts
