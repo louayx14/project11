@@ -22,12 +22,13 @@ pipeline {
             }
         }
     
-
+        
         stage('Run Unit Tests') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 // Run Hardhat tests
                 sh 'npx hardhat test'
+                }
             }
         }
 
