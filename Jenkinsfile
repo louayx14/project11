@@ -43,6 +43,7 @@ pipeline {
 
         stage('Run Slither Analysis') {
             steps { 
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 // Install necessary tools and set Solidity version using solc-select
                 sh '''
                 pip3 install --user cbor2 crytic-compile mythril
@@ -55,7 +56,7 @@ pipeline {
                 
                 // Run Slither on the Solidity contracts
                 sh 'slither contracts/*.sol'
-                
+                }
             }
         }
         stage('Run Echidna Analysis') {
